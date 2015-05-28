@@ -1,0 +1,33 @@
+language: python
+python:
+    - "2.7"
+
+env:
+    # - PLATFORMIO_CI_SRC=examples/Processing/SyncArduinoClock
+    - PLATFORMIO_CI_SRC=examples/TimeArduinoDue PLATFORMIO_CI_BOARDS_ARGS="--board=due"
+    - PLATFORMIO_CI_SRC=examples/TimeGPS
+    - PLATFORMIO_CI_SRC=examples/TimeNTP
+    # - PLATFORMIO_CI_SRC=examples/TimeRTC lib https://github.com/PaulStoffregen/DS1307RTC
+    # - PLATFORMIO_CI_SRC=examples/TimeRTCLog lib https://github.com/PaulStoffregen/DS1307RTC
+    # - PLATFORMIO_CI_SRC=examples/TimeRTCSet lib https://github.com/PaulStoffregen/DS1307RTC
+    - PLATFORMIO_CI_SRC=examples/TimeSerial
+    - PLATFORMIO_CI_SRC=examples/TimeSerialDateStrings
+    - PLATFORMIO_CI_SRC=examples/TimeTeensy3 PLATFORMIO_CI_BOARDS_ARGS="--board=teens31"
+
+install:
+    - python -c "$(curl -fsSL https://raw.githubusercontent.com/platformio/platformio/master/scripts/get-platformio.py)"
+    - rm -rf ./linux
+    #
+    # Libraries from PlatformIO Library Registry:
+    #
+    # http://platformio.org/#!/lib/show/17/Adafruit-CC3000
+    # http://platformio.org/#!/lib/show/28/SPI4Teensy3
+    # http://platformio.org/#!/lib/show/91/UIPEthernet
+    # http://platformio.org/#!/lib/show/418/WildFireCore
+    # http://platformio.org/#!/lib/show/419/SimpleTimer
+    # http://platformio.org/#!/lib/show/420/WildFire-CC3000
+
+    # - platformio lib install 416
+
+script:
+    - if [[ $PLATFORMIO_CI_BOARDS_ARGS ]]; then bash -c 'platformio ci --lib="." $PLATFORMIO_CI_BOARDS_ARGS'; else bash -c 'platformio ci --lib="." --board=uno --board=teensy2pp'; fi
