@@ -3,7 +3,7 @@ python:
     - "2.7"
 
 env:
-     - PLATFORMIO_CI_SRC=examples/TimeArduinoDue PLATFORMIO_CI_BOARDS_ARGS="--board=due"
+    - PLATFORMIO_CI_SRC=examples/TimeArduinoDue PLATFORMIO_CI_BOARDS_ARGS="--board=due"
     - PLATFORMIO_CI_SRC=examples/TimeGPS
     - PLATFORMIO_CI_SRC=examples/TimeNTP
     - PLATFORMIO_CI_SRC=examples/TimeRTC lib https://github.com/PaulStoffregen/DS1307RTC
