@@ -3,7 +3,6 @@ python:
     - "2.7"
 
 env:
-    - PLATFORMIO_CI_SRC=examples/Processing/SyncArduinoClock
     # - PLATFORMIO_CI_SRC=examples/TimeArduinoDue PLATFORMIO_CI_BOARDS_ARGS="--board=due" lib https://github.com/MarkusLange/Arduino-Due-RTC-Library
     - PLATFORMIO_CI_SRC=examples/TimeGPS
     - PLATFORMIO_CI_SRC=examples/TimeNTP
@@ -22,7 +21,7 @@ install:
     #
     # http://platformio.org/#!/lib/show/416/TinyGPS
 
-    # - platformio lib install 416
+    - platformio lib install 416
 
 script:
     - if [[ $PLATFORMIO_CI_BOARDS_ARGS ]]; then bash -c 'platformio ci --lib="." $PLATFORMIO_CI_BOARDS_ARGS'; else bash -c 'platformio ci --lib="." --board=uno --board=teensy20pp'; fi
